@@ -26,12 +26,13 @@ import { useForm } from "react-hook-form";
 */
 
 function ToDoList() {
-  const { register } = useForm();
+  const { register, watch, handleSubmit } = useForm();
+  const onValid = (data: any) => {};
   return (
     <div>
       <h1>내가 가고 싶은 나라들</h1>
-      <form>
-        <input {...register("toDo")} placeholder="name" />
+      <form onSubmit={handleSubmit(onValid)}>
+        <input {...register("toDo", { required: true })} placeholder="name" />
         <button>가자!</button>
       </form>
     </div>
