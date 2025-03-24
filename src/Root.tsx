@@ -2,7 +2,8 @@ import { Outlet } from "react-router-dom";
 import Header from "./components/Header";
 import { createGlobalStyle, ThemeProvider } from "styled-components";
 import { darkTheme, lightTheme } from "./theme";
-import { useState } from "react";
+import { useRecoilValue } from "recoil";
+import { isDarkAtom } from "./atoms";
 
 const GlobalStyle = createGlobalStyle`
  @import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400&display=swap');
@@ -70,15 +71,11 @@ const GlobalStyle = createGlobalStyle`
  `;
 
 function Root() {
-  const [isDark, setIsDark] = useState(false);
-  const toggle = () => setIsDark((current) => !current);
+  const isDark = useRecoilValue(isDarkAtom);
   return (
     <ThemeProvider theme={isDark ? darkTheme : lightTheme}>
-      <button onClick={toggle}>button</button>
-      <h1>
-        <Header />
-        <Outlet />
-      </h1>
+      <Header />
+      <Outlet />
       <GlobalStyle />
     </ThemeProvider>
   );
