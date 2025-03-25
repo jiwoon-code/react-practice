@@ -12,9 +12,7 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <RecoilRoot>
-      <ThemeProvider theme={darkTheme}>
-        <App />
-      </ThemeProvider>
+      <App />
     </RecoilRoot>
   </React.StrictMode>
 );
